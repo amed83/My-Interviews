@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import { Field, reduxForm, } from 'redux-form';
-
+import {createInterview} from '../actions/index'
 
 const renderField = ({input, type, placeholder,meta:{touched,error}}) => (  
      <div  className='create-interview__container'>
@@ -13,31 +13,24 @@ const renderField = ({input, type, placeholder,meta:{touched,error}}) => (
  
 
 
-class CreateInterviewComponent extends Component{
+const CreateInterviewComponent =({handleSubmit})=>{
+
+    // componentDidMount(){
+    // 
+    //     setTimeout(()=>{
+    //         this.props.onOpenModal()
+    //     },300)    
+    // }
+    // 
+    // render(){ 
     
-    handleSubmit=()=>{
-        this.props.onSubmit()
-    }
-    
-    componentDidMount(){
-        console.log('hello component mount')
-        setTimeout(()=>{
-            this.props.onOpenModal()
-        },300)
-        
-    }
-    
-    render(){
-        
         return(
                <div className='create-interview__wrapper'>
-                 <div className='create-interview'
-                 style={{transform: this.props.modal.open ? 'translateY(0)':'translateY(-8vh)',
-                 opacity: this.props.modal.open ?  '1':'0'}}>
-                   <form className='create-interview__form'>
+                 <div className='create-interview'>
+                   <form onSubmit={handleSubmit} className='create-interview__form'>
                        <div className='create-interview__label'>
                        <label>Company</label>
-                       <Field onSubmit={this.handleSubmit.bind(this)} 
+                       <Field  
                            name='company'
                            type='text'
                            component={renderField}       
@@ -65,7 +58,7 @@ class CreateInterviewComponent extends Component{
                        <div className='create-interview__label'>
                        <label>Location</label>
                        <Field  
-                           name='City'
+                           name='location'
                            type='text'
                            component={renderField}       
                        />
@@ -88,16 +81,22 @@ class CreateInterviewComponent extends Component{
                            component={renderField}       
                        />
                        </div>
-                   <button>Add</button>
+                       <button className='btn-submit' >Add</button>
                    </form>
                  </div>
               </div>
           )
-        }    
+            
 }
+
+
 
 const InterviewForm = reduxForm({
     form:'interview'
 })(CreateInterviewComponent);
 
 export default InterviewForm
+
+// style={{transform: this.props.modal.open ? 'translateY(0)':'translateY(-8vh)',
+// opacity: this.props.modal.open ?  '1':'0'}}>
+

@@ -2,20 +2,30 @@ import {CREATE_INTERVIEW} from '../actions/costants';
 
 const initialState={
     company:"",
-    date:""
+    date:"",
+    role:"",
+    location:"",
+    interviewNumber:"",
+    scheduledInterviews:""
 }
 
 const createInterview =(state=initialState, action)=>{
-    switch(action.type){
+    switch(action.type){    
         case CREATE_INTERVIEW:
+        let {company,date,role,location,interviewNumber,scheduledInterviews} = action.payload
         return{
             ...state,
-            company:action.payload.company,
-            date:action.payload.date
+            company,
+            date,
+            role,
+            location,
+            interviewNumber,
+            scheduledInterviews
         }
+        default:
+        return state; 
     }
     
-    return state
 }
 
 export default createInterview

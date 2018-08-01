@@ -14,8 +14,10 @@ const register= (state=initialState,action)=>{
             username:action.payload.username,
             password:action.payload.password
         }
+        default:
+        return state; 
     }
-    return state;
+
 }
 
 

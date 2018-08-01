@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require ('mongoose');
 const routes = require('./routes');
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/myInterviewDb');
 

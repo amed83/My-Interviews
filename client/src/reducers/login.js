@@ -3,11 +3,13 @@ import {LOGIN} from '../actions/costants'
 
 const initialState ={
     username:null,
-    password:null
+    password:null,
+    user_id:null
 }
 
 
 const login= (state=initialState,action)=>{
+
     switch(action.type){
         case LOGIN:
         return{
@@ -15,8 +17,10 @@ const login= (state=initialState,action)=>{
             username:action.payload.username,
             password:action.payload.password
         }
+        default:
+        return state; 
     }
-    return state;
+    
 }
 
 

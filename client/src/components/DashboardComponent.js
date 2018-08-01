@@ -19,7 +19,7 @@ class DashboardComponent extends Component {
                         </li>
                         <li className='dashboard__list__item'> 
                              <a href="#"  className='dashboard__list__link'
-                             onClick={this.handleClick.bind(this)}>Jobs</a>
+                             onClick={this.handleClick.bind(this)}>Interviews</a>
                        </li>
                         <li className='dashboard__list__item'> 
                             <a href="#"  className='dashboard__list__link'>Calendar </a>

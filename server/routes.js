@@ -27,7 +27,9 @@ module.exports = (app) =>{
                  checkPassword(password,user[0].password)
                  .then(result=>{
                      if(result){
-                         res.json({success:true})     
+                         res.json({
+                             success:true,
+                             id:user[0]._id})     
                      }
                      res.json({success:false}) 
                     }) 
@@ -35,6 +37,16 @@ module.exports = (app) =>{
            })
             .catch(error=>console.log('error ',error))      
     })   
-
+    
+    app.post('/createInterview/:username',(req,res)=>{
+        const {username}= req.params
+    
+        User.findOne({username:username})
+         .then(user=>{
+             user.interviews.push(req.body)
+             user.save()
+         })
+         .catch(err=> console.log('error ', err))
+    })
 
 }

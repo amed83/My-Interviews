@@ -1,6 +1,5 @@
 import {connect} from 'react-redux'
 import DashboardComponent from '../components/DashboardComponent'
-import {openModal} from '../actions/index'
 import {push} from 'react-router-redux'
 
 

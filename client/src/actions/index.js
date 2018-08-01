@@ -1,5 +1,5 @@
 import {REGISTER,LOGIN,CHECK_LOGIN,
-    LOGIN_ERROR,CREATE_INTERVIEW,OPEN_MODAL} from './costants';
+    LOGIN_ERROR,CREATE_INTERVIEW,OPEN_MODAL,INTERVIEWS_LIST} from './costants';
 import axios from 'axios'
 import { push } from 'react-router-redux'
 
@@ -57,9 +57,11 @@ export const submitLogin = (username,password)=>{
                 })
              }else{
                  dispatch({
-                     type:CHECK_LOGIN
+                     type:CHECK_LOGIN,
+                     payload:data.data.id
                  })
-                 dispatch(push('/dashboard/'))
+                 
+                 dispatch(push('/dashboard'))
              } 
          })
          .catch(err=>console.log('user not found ', err))
@@ -69,16 +71,25 @@ export const submitLogin = (username,password)=>{
 
 export const createInterview = () =>{
        return(dispatch,getState)=>{
-           const form = getState.form()
-           const {company, date} = form.interview.values
+           const form = getState().form
+           const username = getState().login.username
+           const {company, date,role,location,interviewNumber,scheduledInterviews} = form.interview.values
            const data={
                company,
-               date
+               date,
+               role,
+               location,
+               interviewNumber,
+               scheduledInterviews 
            }
             dispatch({
                     type:CREATE_INTERVIEW,
                     payload:data
                 })
+                const usernameFake = 'Mikkone'
+            axios.post(`/createInterview/${usernameFake}`,data )
+             .then(response=> console.log('response diopuerc ', response))
+             .catch(err=> console.log('errore diomaiale',err))
         }
 }
 
@@ -87,4 +98,9 @@ export const openModal = ()=>{
         type:OPEN_MODAL
     }
 }
+
+// export const getInterviewsList = ()=> {
+//     const username = getState().login.username
+// }
+
 

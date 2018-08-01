@@ -3,15 +3,18 @@ import {CHECK_LOGIN,LOGIN_ERROR} from '../actions/costants'
 
 const initialState ={
     loginOk:false,
-    loginError:false
+    loginError:false,
+    user_id:null
 }
 
 const checkLogin = (state=initialState, action)=>{
+
     switch(action.type){
         case CHECK_LOGIN:
         return{
             ...state,
-            loginOk:true
+            loginOk:true,
+            user_id:action.payload
         }
     }
     switch(action.type){
@@ -19,10 +22,11 @@ const checkLogin = (state=initialState, action)=>{
             return{
                 ...state,
                 loginError:true
-            }         
+            }
+            default:
+            return state;         
     }
     
-    return state;
 }
 
 export default checkLogin
