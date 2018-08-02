@@ -32,21 +32,31 @@ module.exports = (app) =>{
                              id:user[0]._id})     
                      }
                      res.json({success:false}) 
-                    }) 
+                 }).catch(error=> console.log('could not check if password match ', error)) 
                  }        
            })
-            .catch(error=>console.log('error ',error))      
+            .catch(error=>console.log('could not find the user ',error))      
     })   
     
     app.post('/createInterview/:username',(req,res)=>{
+        console.log('helloooooooooo' , req.params)
         const {username}= req.params
-    
         User.findOne({username:username})
          .then(user=>{
              user.interviews.push(req.body)
              user.save()
+             res.json(user)
          })
-         .catch(err=> console.log('error ', err))
+         .catch(err=> console.log('error creating interview ', err))
+    })
+    
+    app.get('/userInterviews/:user_id',(req,res)=>{
+        const {user_id}= req.params
+        User.find({_id:user_id})
+         .then(user=> {
+            res.json({interviews:user[0].interviews})
+        })
+             
     })
 
 }

@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import DashboardComponent from '../components/DashboardComponent'
 import {push} from 'react-router-redux'
-
+import {getInterviewsList} from '../actions/index'
 
 
 export default connect(
@@ -11,8 +11,9 @@ export default connect(
     }),
 
     dispatch=>({
-        onOpenModal:()=>{
-            dispatch(push('/dashboard/createInterview'))
+        onShowInterviews:()=>{
+            dispatch(getInterviewsList())
+            dispatch(push('/dashboard/interviews'))
         } 
     })
     

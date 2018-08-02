@@ -15,14 +15,6 @@ const renderField = ({input, type, placeholder,meta:{touched,error}}) => (
 
 const CreateInterviewComponent =({handleSubmit})=>{
 
-    // componentDidMount(){
-    // 
-    //     setTimeout(()=>{
-    //         this.props.onOpenModal()
-    //     },300)    
-    // }
-    // 
-    // render(){ 
     
         return(
                <div className='create-interview__wrapper'>

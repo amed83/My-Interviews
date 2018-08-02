@@ -4,7 +4,7 @@ import {CHECK_LOGIN,LOGIN_ERROR} from '../actions/costants'
 const initialState ={
     loginOk:false,
     loginError:false,
-    user_id:null
+    user_id:"5b61db7ede3e913104213099"
 }
 
 const checkLogin = (state=initialState, action)=>{

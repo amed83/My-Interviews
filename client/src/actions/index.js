@@ -27,12 +27,14 @@ export const register=()=>{
 export const login = ()=>{
     return(dispatch,getState)=>{
         const form = getState().form
-        const username = form.login.values.username 
-        const password = form.login.values.password
+        // const username = form.login.values.username 
+        // const password = form.login.values.password
+        const username = 'Angelica'
+        const password = 'tafano'
         const data= {
             username,
             password
-        } 
+        }
         dispatch({
             type:LOGIN,
             payload:{
@@ -51,6 +53,7 @@ export const submitLogin = (username,password)=>{
             password
         })
          .then(data=>{
+             console.log('data after login ',data)
              if(!data.data.success){
                 dispatch({
                     type:LOGIN_ERROR
@@ -60,7 +63,6 @@ export const submitLogin = (username,password)=>{
                      type:CHECK_LOGIN,
                      payload:data.data.id
                  })
-                 
                  dispatch(push('/dashboard'))
              } 
          })
@@ -86,8 +88,8 @@ export const createInterview = () =>{
                     type:CREATE_INTERVIEW,
                     payload:data
                 })
-                const usernameFake = 'Mikkone'
-            axios.post(`/createInterview/${usernameFake}`,data )
+            console.log('username ', username)
+            axios.post(`/createInterview/${username}`,data )
              .then(response=> console.log('response diopuerc ', response))
              .catch(err=> console.log('errore diomaiale',err))
         }
@@ -99,8 +101,18 @@ export const openModal = ()=>{
     }
 }
 
-// export const getInterviewsList = ()=> {
-//     const username = getState().login.username
-// }
+export const getInterviewsList = ()=> {
+    return(dispatch,getState)=>{
+        const user_id = getState().checkLogin.user_id
+        axios.get(`/userInterviews/${user_id}`)
+        .then(data=> {
+            console.log('data after get ', data.data)
+            dispatch({
+                type:INTERVIEWS_LIST,
+                payload:data.data.interviews
+            })
+        })    
+    }    
+}
 
 

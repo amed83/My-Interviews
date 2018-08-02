@@ -9,7 +9,11 @@
     align-items: center;
     justify-content: center;
     position:relative;
-  
+        
+        &__body{
+            background-color: yellow;
+        }
+        
         &__wrapper{
             position: absolute;
             bottom:0;
@@ -32,4 +36,15 @@
         height: 10%;
         background-color: #fff;
     }
+}
+
+
+.svg-icon.add path{
+        width:4rem;
+        height: 4rem;
+        fill:var(--color-grey-dark-2);
+        
+        // &:hover{
+        //     fill:var(--color-primary);
+        // }
 }

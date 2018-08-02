@@ -5,6 +5,7 @@ import login from './login'
 import checkLogin from './checkLogin'
 import createInterview from './createInterview'
 import openModal from './openModal'
+import getInterviewsList from './getInterviewsList'
 
 const appReducer = combineReducers({
     form:formReducer,
@@ -12,7 +13,8 @@ const appReducer = combineReducers({
     login,
     checkLogin,
     createInterview,
-    openModal
+    openModal,
+    getInterviewsList
 })
 
 
